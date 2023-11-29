@@ -1,0 +1,37 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.tools.compileSdk
+
+    defaultConfig {
+        minSdkVersion rootProject.tools.minSdk
+        targetSdkVersion rootProject.tools.targetSdk
+        versionCode 3
+        versionName "${rootProject.tools.versionName}"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["androidManifestFile": "$projectDir/src/main/AndroidManifest.xml".toString()]
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation project(':android-pdf-viewer')
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'org.androidannotations:androidannotations-api:4.6.0'
+    annotationProcessor "org.androidannotations:androidannotations:4.6.0"
+}
